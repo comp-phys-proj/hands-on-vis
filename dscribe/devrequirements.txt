@@ -1,0 +1,7 @@
+coverage
+coveralls
+pymatgen
+sphinx
+sphinx_rtd_theme
+sphinxcontrib-bibtex
+pybind11
