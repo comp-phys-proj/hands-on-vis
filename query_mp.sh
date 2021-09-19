@@ -5,13 +5,16 @@ if [ "$1" == "-h" -o "$1" == "--help" -o "$1" == "" ]; then
     exit 0
 fi
 
-if [ ! -e MP_API_KEY ]; then
+if [ "$MP_API_KEY" == "" ]; then
     echo "=========================================================="
     echo "You need to obtain a materials project API key!"
     echo "Go to https://materialsproject.org"
     echo "Click on 'Login' to login/create an account."
     echo "Then go to Dashboard and 'Generate API Key'."
-    echo "Grab the character string an place it in a file MP_API_KEY"
+    echo "Grab the character string an place it in an "
+    echo "environment variable MP_API_KEY like this:"
+    echo ""
+    echo "  export MP_API_KEY=\"<string>\""
     echo "=========================================================="
     exit 1
 fi
@@ -39,8 +42,6 @@ while [ -n "$1" ]; do
     fi
     shift 1
 done
-
-MP_API_KEY=$(cat MP_API_KEY)
 
 #curl https://www.materialsproject.org/rest/v2/materials/mp-1234/vasp?API_KEY=$MP_API_KEY
 
