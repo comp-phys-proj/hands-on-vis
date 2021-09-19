@@ -25,7 +25,7 @@ def read_xyzlist(xyzfile):
     f.close()
     return all_structures
 
-structs = read_xyzlist('./tmQM_X.xyz')
+structs = read_xyzlist('tmQM_X.xyz')
 with open('tmqm_structures.pickle', 'wb') as f:
     pickle.dump(structs, f, protocol=pickle.HIGHEST_PROTOCOL)
 
