@@ -48,5 +48,4 @@ done
 CRITERIA='{"elements": {"$in": ['$IN'], "$all": ['$ALL']}}'
 PROPERTIES='["material_id", "pretty_formula", "elements", "nelements", "energy", "energy_per_atom", "density", "volume", "nsites", "band_gap", "total_magnetization", "elasticity", "piezo", "diel", "copyright", "cif"]'
 
-curl -s --header "X-API-KEY: $MP_API_KEY" "https://www.materialsproject.org/rest/v2/query" -F "criteria=$CRITERIA" -F "properties=$PROPERTIES"
-
+curl -s --header "X-API-KEY: $MP_API_KEY" "https://legacy.materialsproject.org/rest/v2/query" -F "criteria=$CRITERIA" -F "properties=$PROPERTIES"
