@@ -9,7 +9,12 @@ print("Available properties:",mp_properties.keys())
 
 print([mp_properties[x][0:3] for x in mp_properties])
 
-plt.hist(mp_properties["G_Reuss"], bins=50)
+if "G_Reuss" in mp_properties:
+    key = "G_Reuss"
+else:
+    key = "g_reuss"
+
+plt.hist(mp_properties[key], bins=50)
 
 plt.ylabel('Counts')
 plt.xlabel('G_Reuss');

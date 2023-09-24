@@ -19,7 +19,13 @@ def read_mp_properties(jsonfile):
         data = json.load(f)
     columns = []
     keys = {}
-    for row in data["response"]:
+
+    if "response" in data:
+        datarows = data["response"]
+    else:
+        datarows = data
+
+    for row in datarows:
         for key in row:
             if isinstance(row[key],dict):
                 for subkey in row[key]:
@@ -32,12 +38,14 @@ def read_mp_properties(jsonfile):
     outdata = {}
     for key in keys:
         column = []
-        for row in data["response"]:
+        for row in datarows:
             try:
                 if isinstance(keys[key],tuple):
                     val = row[keys[key][0]][keys[key][1]]
                 else:
-                    if isinstance(row[key],list):
+                    if row[key] is None:
+                        val = numpy.nan
+                    elif isinstance(row[key],list):
                         val = ",".join(row[key])
                     else:
                         val = row[key]

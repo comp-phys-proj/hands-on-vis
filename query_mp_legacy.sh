@@ -5,17 +5,17 @@ if [ "$1" == "-h" -o "$1" == "--help" -o "$1" == "" ]; then
     exit 0
 fi
 
-if [ "$MP_API_KEY" == "" ]; then
-    echo "=========================================================="
-    echo "You need to obtain a materials project API key!"
-    echo "Go to https://materialsproject.org"
-    echo "Click on 'Login' to login/create an account."
-    echo "Then go to Dashboard and 'Generate API Key'."
-    echo "Grab the character string an place it in an "
-    echo "environment variable MP_API_KEY like this:"
-    echo ""
-    echo "  export MP_API_KEY=\"<string>\""
-    echo "=========================================================="
+if [ "$MP_API_KEY_LEGACY" == "" ]; then
+    echo "==========================================================" >&2
+    echo "You need to obtain a materials project API key!" >&2
+    echo "Go to https://materialsproject.org" >&2
+    echo "Click on 'Login' to login/create an account." >&2
+    echo "Then go to Dashboard and 'Generate API Key'." >&2
+    echo "Grab the character string an place it in an " >&2
+    echo "environment variable MP_API_KEY like this:" >&2
+    echo "" >&2
+    echo "  export MP_API_KEY_LEGACY=\"<string>\"" >&2
+    echo "==========================================================" >&2
     exit 1
 fi
 
@@ -48,4 +48,4 @@ done
 CRITERIA='{"elements": {"$in": ['$IN'], "$all": ['$ALL']}}'
 PROPERTIES='["material_id", "pretty_formula", "elements", "nelements", "energy", "energy_per_atom", "density", "volume", "nsites", "band_gap", "total_magnetization", "elasticity", "piezo", "diel", "copyright", "cif"]'
 
-curl -s --header "X-API-KEY: $MP_API_KEY" "https://legacy.materialsproject.org/rest/v2/query" -F "criteria=$CRITERIA" -F "properties=$PROPERTIES"
+curl -s --header "X-API-KEY: $MP_API_KEY_LEGACY" "https://legacy.materialsproject.org/rest/v2/query" -F "criteria=$CRITERIA" -F "properties=$PROPERTIES"
